@@ -27,10 +27,12 @@ mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
 
 //import routers
 const homepageRouter = require('./routes/homepage.js');
+const beachesRouter = require('./routes/beaches.js');
 
 
 //pass routers to express as middleware
 app.use('/', homepageRouter);
+app.use('/beaches', beachesRouter);
 
 
 
