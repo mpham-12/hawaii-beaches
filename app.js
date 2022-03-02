@@ -3,7 +3,8 @@ const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const Beach = require('./models/beach');
+const morgan = require('morgan');
+const ejsMate = require('ejs-mate');
 
 mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
   useNewUrlParser: true,
@@ -22,11 +23,14 @@ db.once('open', () => {
   console.log('Database connected');
 });
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+//middleware, functions that run each time a request is sent
 app.use(express.urlencoded({ extended: true })) //allows req.body to be parsed
 app.use(methodOverride('_method')); //allows use of PUT/PATCH/DELETE
+app.use(morgan('dev'));
 
 
 
@@ -39,7 +43,10 @@ const beachesRouter = require('./routes/beaches.js');
 app.use('/', homepageRouter);
 app.use('/beaches', beachesRouter);
 
-
+//404 page
+app.use((req, res) => {
+  res.status(404).send('page not found');
+})
 
 app.listen(8080, () => {
   console.log('SERVING ON PORT 8080')

@@ -1,5 +1,4 @@
 const express = require("express");
-const { reset } = require("nodemon");
 const router = express.Router();
 const Beach = require('../models/beach');
 
@@ -8,8 +7,6 @@ router.get('/', async (req, res) => {
   const beaches = await Beach.find({});
   res.render('beaches', { beaches })
 })
-
-
 
 //create
 router.get('/new', async (req, res) => {
