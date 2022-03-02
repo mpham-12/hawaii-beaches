@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const Beach = require('./models/beach');
 
 mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
@@ -25,6 +26,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true })) //allows req.body to be parsed
+app.use(methodOverride('_method')); //allows use of PUT/PATCH/DELETE
 
 
 

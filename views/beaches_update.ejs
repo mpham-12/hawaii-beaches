@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+
+<body>
+  <h1>BEACHES UPDATE FORM</h1>
+  <form action="/beaches/<%= beach._id%>?_method=PUT" method="POST">
+    <input type="text" name="title" id="title" placeholder="title" value="<%= beach.title%> ">
+    <input type="text" name="location" id="location" placeholder="city, state" value="<%= beach.location%> ">
+    <input type="text" name="latitude" id="latitude" placeholder="latitude" value="<%= beach.latitude%> ">
+    <input type="text" name="longitude" id="longitude" placeholder="longitude" value="<%= beach.longitude%> ">
+    <textarea cols="50" rows="10" name="description" id="description" placeholder="description" > <%= beach.description%></textarea>
+    <button>Update</button>
+  </form>
+  <form action="/beaches/<%= beach._id%>?_method=DELETE" method="POST">
+    <button>Delete</button>
+  </form>
+  <a href="/beaches/<%= beach._id%>">Back</a>
+</body>
+
+</html>
