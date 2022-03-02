@@ -14,6 +14,9 @@ mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
   .catch((err) => {
     console.log(err)
   });
+  
+  app.set('view engine', 'ejs');
+  app.set('views', path.join(__dirname, 'views'));
 
 // const db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error:'));
@@ -21,22 +24,14 @@ mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
 //   console.log('Database connected');
 // });
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+
+//import routers
+const homepageRouter = require('./routes/homepage.js');
 
 
+//pass routers to express as middleware
+app.use('/', homepageRouter);
 
-
-
-//example route
-app.get('/', (req, res) => {
-  res.render('home')
-})
-app.get('/test', async (req, res) => {
-  const beach = new Beach({title:'lanikai'})
-  await beach.save()
-  res.send(beach);
-})
 
 
 app.listen(8080, () => {
