@@ -6,7 +6,9 @@ const BeachSchema = new Schema({
   // rating: Number,
   description: String,
   location: String,
-  longitude: Number,
   latitude: Number,
+  longitude: Number,
   // image:
 })
+
+module.exports = mongoose.model('Beach', BeachSchema);
