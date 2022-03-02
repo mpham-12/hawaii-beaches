@@ -1,16 +1,13 @@
 <% layout('/layouts/boilerplate') %> 
 
   <h1><%= beach.title %> DETAILS PAGE</h1>
-  <img src=<%= beach.image %>>
-  <ul>
-    <%= beach.title %>
-      <li>
-        <%= beach.location %>
-      </li>
-      <li>
-        <%= beach.description %>
-      </li>
-  </ul>
+  <div class="card mb-3" style="width: 50%;">
+    <img src=<%= beach.image %> class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title"><%= beach.title %></h5>
+      <p class="card-text"><%= beach.description %></p>
+      <p class="card-text"><small class="text-muted"><%= beach.location %></small></p>
+    </div>
   <a href="/beaches">Back</a>
   <a href="/beaches/<%= beach._id%>/edit">Edit</a>
   
