@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id);
-  console.log(beach);
+  console.log('beach show', beach);
   res.render('beaches_show', { beach })
 })
 

@@ -8,7 +8,7 @@ const BeachSchema = new Schema({
   latitude: Number,
   longitude: Number,
   description: String,
-  // image:
+  image: String,
 })
 
 module.exports = mongoose.model('Beach', BeachSchema);
