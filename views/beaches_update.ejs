@@ -2,14 +2,35 @@
 
   <h1>BEACHES UPDATE FORM</h1>
   <form action="/beaches/<%= beach._id%>?_method=PUT" method="POST">
-    <input type="text" name="title" id="title" placeholder="title" value="<%= beach.title%> ">
-    <input type="text" name="location" id="location" placeholder="city, state" value="<%= beach.location%> ">
-    <input type="text" name="latitude" id="latitude" placeholder="latitude" value="<%= beach.latitude%> ">
-    <input type="text" name="longitude" id="longitude" placeholder="longitude" value="<%= beach.longitude%> ">
-    <textarea cols="50" rows="10" name="description" id="description" placeholder="description" > <%= beach.description%></textarea>
-    <button>Update</button>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput" name="title" value="<%= beach.title%>">
+      <label for="floatingInput">Beach Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput" name="image" value="<%= beach.image%>">
+      <label for="floatingInput">Image URL</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput" name="location" value="<%= beach.location%>">
+      <label for="floatingInput">City, State</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput" name="latitude" value="<%= beach.latitude%>">
+      <label for="floatingInput">Latitude</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput" name="longitude" value="<%= beach.longitude%>">
+      <label for="floatingInput">Longitude</label>
+    </div>
+    <div class="form-floating">
+      <textarea class="form-control" rows="6" style="height:100%;" id="floatingTextarea" name="description"><%= beach.description%></textarea>
+      <label for="floatingTextarea">Description</label>
+    </div>    <button>Update</button>
   </form>
+
+
   <form action="/beaches/<%= beach._id%>?_method=DELETE" method="POST">
     <button>Delete</button>
   </form>
   <a href="/beaches/<%= beach._id%>">Back</a>
+
