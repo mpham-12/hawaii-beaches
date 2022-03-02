@@ -12,9 +12,11 @@
   <h1>BEACHES PAGE</h1>
   <ul>
     <% for (let beach of beaches){ %>
-      <li><a href="/beaches/<%=beach._id%>">
+      <li>
+        <a href="/beaches/<%=beach._id%>">
           <%= beach.title %>
-        </a></li>
+        </a>
+      </li>
       <% } %>
   </ul>
 </body>

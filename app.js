@@ -9,20 +9,23 @@ mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
   useUnifiedTopology: true
 })
   .then(() => {
-    console.log('Connected to MongoDB...')
+    console.log('Connected to MongoDB!')
   })
   .catch((err) => {
     console.log(err)
   });
-  
-  app.set('view engine', 'ejs');
-  app.set('views', path.join(__dirname, 'views'));
 
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', () => {
-//   console.log('Database connected');
-// });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Database connected');
+});
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.urlencoded({ extended: true })) //allows req.body to be parsed
+
 
 
 //import routers
