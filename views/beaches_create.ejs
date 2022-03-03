@@ -1,37 +1,44 @@
-<% layout('/layouts/boilerplate') %> 
+<% layout('/layouts/boilerplate') %>
 
   <h1>BEACHES CREATE FORM</h1>
-  <form action="/beaches" method="POST">
+  <form class="needs-validation" action="/beaches" method="POST" novalidate>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput" name="title">
+      <input type="text" class="form-control" id="floatingInput" name="title" required>
       <label for="floatingInput">Beach Name</label>
+      <div class="valid-feedback">Looks good!</div>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput" name="image">
+      <input type="text" class="form-control" id="floatingInput" name="image" required>
       <label for="floatingInput">Image URL</label>
+      <div class="valid-feedback">Looks good!</div>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput" name="location">
+      <input type="text" class="form-control" id="floatingInput" name="location" required>
       <label for="floatingInput">City, State</label>
+      <div class="valid-feedback">Looks good!</div>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput" name="latitude">
+      <input type="text" class="form-control" id="floatingInput" name="latitude" required>
       <label for="floatingInput">Latitude</label>
+      <div class="valid-feedback">Looks good!</div>
+
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingInput" name="longitude">
+      <input type="text" class="form-control" id="floatingInput" name="longitude" required>
       <label for="floatingInput">Longitude</label>
+      <div class="valid-feedback">Looks good!</div>
+
     </div>
     <div class="form-floating">
-      <textarea class="form-control" rows="6" style="height:100%;" id="floatingTextarea" name="description"></textarea>
+      <textarea class="form-control" rows="6" style="height:100%;" id="floatingTextarea" name="description"
+        required></textarea>
       <label for="floatingTextarea">Description</label>
+      <div class="valid-feedback">Looks good!</div>
+
     </div>
-  
-  <button>Create</button>
+
+    <button>Create</button>
   </form>
   <a href="/beaches">Back</a>
 
 
-
-
-  
