@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const ejsMate = require('ejs-mate');
+const ExpressError = require('./helpers/ExpressError')
+
 
 mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
   useNewUrlParser: true,
@@ -43,9 +45,19 @@ const beachesRouter = require('./routes/beaches.js');
 app.use('/', homepageRouter);
 app.use('/beaches', beachesRouter);
 
-//404 page
-app.use((req, res) => {
-  res.status(404).send('page not found');
+
+//error handling for all other pages
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found', 404))
+})
+
+//custom error-handling middleware function. 
+//overthrows express' default error handling 
+//next(err) passes to here
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = 'Something went wrong';
+  res.status(statusCode).render('error', { err });
 })
 
 app.listen(8080, () => {
