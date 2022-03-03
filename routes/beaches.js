@@ -3,7 +3,20 @@ const router = express.Router();
 const Beach = require('../models/beach');
 const catchAsync = require('../helpers/catchAsync');
 const ExpressError = require('../helpers/ExpressError');
-const Joi = require('joi');
+const {beachSchema} = require('../schemas.js');
+
+
+const validateBeach = (req, res, next) => {
+
+
+  const { error } = beachSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map(e => e.message).join(',')
+    throw new ExpressError(msg, 400)
+  } else {
+    next();
+  }
+}
 
 
 //index
@@ -17,22 +30,7 @@ router.get('/new', catchAsync(async (req, res) => {
   res.render('beaches_create')
 }))
 
-router.post('/', catchAsync(async (req, res) => {
-  // if (!req.body) throw new ExpressError('Invalid Beach Data', 400)
-  const beachSchema = Joi.object({
-      title: Joi.string().required(),
-      location: Joi.string().required(),
-      latitude: Joi.number().required(),
-      longitude: Joi.number().required(),
-      description: Joi.string().required(),
-      image: Joi.string().required(),
-    })
-
-  const {error} = beachSchema.validate(req.body);
-  if (error){
-    const msg = error.details.map(e => e.message).join(',')
-    throw new ExpressError(msg, 400)
-  }
+router.post('/', validateBeach, catchAsync(async (req, res) => {
   const beach = new Beach(req.body);
   await beach.save();
   res.redirect(`/beaches/${beach._id}`)
@@ -53,7 +51,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
   res.render('beaches_update', { beach });
 }))
 
-router.put('/:id', catchAsync(async (req, res) => {
+router.put('/:id', validateBeach, catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndUpdate(id, { ...req.body });
   res.redirect(`/beaches/${id}`)
