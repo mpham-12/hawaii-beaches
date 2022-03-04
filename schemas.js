@@ -9,4 +9,9 @@ const beachSchema = Joi.object({
   image: Joi.string().required(),
 });
 
-module.exports = {beachSchema};
+const reviewSchema = Joi.object({
+  rating: Joi.number().required(),
+  body: Joi.string().required(),
+});
+
+module.exports = {beachSchema, reviewSchema};
