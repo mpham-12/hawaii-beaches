@@ -1,26 +1,34 @@
-<% layout('/layouts/boilerplate') %> 
+<% layout('/layouts/boilerplate') %>
 
-  <h1><%= beach.title %> DETAILS PAGE</h1>
+  <h1>
+    <%= beach.title %> DETAILS PAGE
+  </h1>
   <div class="card mb-3" style="width: 50%;">
-    <img src=<%= beach.image %> class="card-img-top" alt="">
+    <img src=<%=beach.image %> class="card-img-top" alt="">
     <div class="card-body">
-      <h5 class="card-title"><%= beach.title %></h5>
-      <p class="card-text"><%= beach.description %></p>
-      <p class="card-text"><small class="text-muted"><%= beach.location %></small></p>
+      <h5 class="card-title">
+        <%= beach.title %>
+      </h5>
+      <p class="card-text">
+        <%= beach.description %>
+      </p>
+      <p class="card-text"><small class="text-muted">
+          <%= beach.location %>
+        </small></p>
     </div>
-  <a href="/beaches">Back</a>
-  <a href="/beaches/<%= beach._id%>/edit">Edit</a>
+    <a href="/beaches">Back</a>
+    <a href="/beaches/<%= beach._id%>/edit">Edit</a>
   </div>
 
   <h2>Leave a Review</h2>
-<form class="mb-3" action="">
-  <div class="mb-3">
-    <label class="form-label" for="rating">Rating</label>
-    <input class="form-range" type="range" min="1" max="5" name="rating" id="rating">
-  </div>
-  <div class="mb-3">
-    <label class="form-label" for="body">Review:</label>
-    <textarea class="form-control" name="body" id="body" cols="30" rows="5"></textarea>
-  </div>
-  <button class="btn btn-success">Submit</button>
-</form>
+  <form class="mb-3" action="/beaches/<%=beach._id%>/reviews" method="POST">
+    <div class="mb-3">
+      <label class="form-label" for="rating">Rating</label>
+      <input class="form-range" type="range" min="1" max="5" name="rating" id="rating">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="body">Review:</label>
+      <textarea class="form-control" name="body" id="body" cols="30" rows="5"></textarea>
+    </div>
+    <button class="btn btn-success">Submit</button>
+  </form>

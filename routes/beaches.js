@@ -4,6 +4,7 @@ const Beach = require('../models/beach');
 const catchAsync = require('../helpers/catchAsync');
 const ExpressError = require('../helpers/ExpressError');
 const {beachSchema} = require('../schemas.js');
+const Review = require('../models/review')
 
 
 const validateBeach = (req, res, next) => {
@@ -63,7 +64,14 @@ router.delete('/:id', catchAsync(async (req, res) => {
 }))
 
 router.post('/:id/reviews', catchAsync(async(req, res)=>{
-res.send('review made')
+  const { id } = req.params;
+  const beach = await Beach.findById(id);
+  const review = new Review(req.body);
+  beach.reviews.push(review);
+  await review.save();
+  await beach.save();
+  console.log(req.body)
+  res.redirect(`/beaches/${id}`)
 }))
 
 module.exports = router;
