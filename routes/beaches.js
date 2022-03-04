@@ -7,8 +7,6 @@ const {beachSchema} = require('../schemas.js');
 
 
 const validateBeach = (req, res, next) => {
-
-
   const { error } = beachSchema.validate(req.body);
   if (error) {
     const msg = error.details.map(e => e.message).join(',')
@@ -62,6 +60,10 @@ router.delete('/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndDelete(id);
   res.redirect(`/beaches/`)
+}))
+
+router.post('/:id/reviews', catchAsync(async(req, res)=>{
+res.send('review made')
 }))
 
 module.exports = router;
