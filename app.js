@@ -5,7 +5,12 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const ejsMate = require('ejs-mate');
-const ExpressError = require('./helpers/ExpressError')
+const ExpressError = require('./helpers/ExpressError');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
+
+
 
 
 mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
@@ -33,6 +38,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true })) //allows req.body to be parsed
 app.use(methodOverride('_method')); //allows use of PUT/PATCH/DELETE
 app.use(morgan('dev'));
+app.use(cookieParser('secretcode'));
+app.use(session({secret: 'secretcode'}));
+app.use(flash());
 
 
 
