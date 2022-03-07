@@ -4,7 +4,8 @@ const Beach = require('../models/beach');
 const catchAsync = require('../helpers/catchAsync');
 const ExpressError = require('../helpers/ExpressError');
 const { beachSchema, reviewSchema } = require('../schemas.js');
-const Review = require('../models/review')
+const Review = require('../models/review');
+
 
 
 const validateBeach = (req, res, next) => {
@@ -41,6 +42,7 @@ router.get('/new', catchAsync(async (req, res) => {
 router.post('/', validateBeach, catchAsync(async (req, res) => {
   const beach = new Beach(req.body);
   await beach.save();
+  req.flash('success', 'Success! You have listed a new beach.');
   res.redirect(`/beaches/${beach._id}`)
 }))
 
@@ -48,7 +50,7 @@ router.post('/', validateBeach, catchAsync(async (req, res) => {
 router.get('/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id).populate('reviews');
-  res.render('beaches_show', { beach })
+  res.render('beaches_show', { beach, msg: req.flash('success') })
 }))
 
 //update
@@ -61,6 +63,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
 router.put('/:id', validateBeach, catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndUpdate(id, { ...req.body });
+  req.flash('success', 'Success! You have modified the beach.');
   res.redirect(`/beaches/${id}`)
 }))
 
@@ -79,7 +82,7 @@ router.post('/:id/reviews', validateReview, catchAsync(async (req, res) => {
   beach.reviews.push(review);
   await review.save();
   await beach.save();
-  console.log(beach.reviews)
+  req.flash('success', 'Success! Your review has been posted.');
   res.redirect(`/beaches/${id}`);
 }))
 
