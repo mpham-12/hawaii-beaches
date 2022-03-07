@@ -39,9 +39,20 @@ app.use(express.urlencoded({ extended: true })) //allows req.body to be parsed
 app.use(methodOverride('_method')); //allows use of PUT/PATCH/DELETE
 app.use(morgan('dev'));
 app.use(cookieParser('secretcode'));
-app.use(session({secret: 'secretcode'}));
+
+const sessionConfig = {
+  secret: 'reallylongpassword',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}
+app.use(session(sessionConfig));
 // app.use(flash());
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 
