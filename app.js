@@ -40,7 +40,8 @@ app.use(methodOverride('_method')); //allows use of PUT/PATCH/DELETE
 app.use(morgan('dev'));
 app.use(cookieParser('secretcode'));
 app.use(session({secret: 'secretcode'}));
-app.use(flash());
+// app.use(flash());
+app.use(express.static('public'))
 
 
 
