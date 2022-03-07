@@ -71,7 +71,8 @@ router.put('/:id', validateBeach, catchAsync(async (req, res) => {
 router.delete('/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndDelete(id);
-  res.redirect(`/beaches/`)
+  req.flash('success', 'Your listed beach has been deleted.');
+  res.redirect(`/beaches/`);
 }))
 
 //post review
@@ -91,6 +92,7 @@ router.delete('/:id/reviews/:reviewId', catchAsync(async (req, res) => {
   const { id, reviewId } = req.params;
   await Beach.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
   await Review.findByIdAndDelete(reviewId);
+  req.flash('success', 'Your review has been deleted.');
   res.redirect(`/beaches/${id}`);
 }))
 
