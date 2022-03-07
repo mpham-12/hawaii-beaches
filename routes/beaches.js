@@ -50,6 +50,10 @@ router.post('/', validateBeach, catchAsync(async (req, res) => {
 router.get('/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id).populate('reviews');
+  if (!beach) {
+    req.flash('error', "The beach you're looking for does not exist.");
+    return res.redirect('/beaches')
+  }
   res.render('beaches_show', { beach, msg: req.flash('success') })
 }))
 
@@ -57,6 +61,10 @@ router.get('/:id', catchAsync(async (req, res) => {
 router.get('/:id/edit', catchAsync(async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id);
+  if (!beach) {
+    req.flash('error', "The beach you're looking for does not exist.");
+    return res.redirect('/beaches')
+  }
   res.render('beaches_update', { beach });
 }))
 
@@ -90,7 +98,7 @@ router.post('/:id/reviews', validateReview, catchAsync(async (req, res) => {
 //delete review
 router.delete('/:id/reviews/:reviewId', catchAsync(async (req, res) => {
   const { id, reviewId } = req.params;
-  await Beach.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+  await Beach.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
   req.flash('success', 'Your review has been deleted.');
   res.redirect(`/beaches/${id}`);
