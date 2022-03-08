@@ -8,19 +8,23 @@ const passport = require('passport');
 router.get('/register', (req, res) => {
   res.render('register')
 })
+
 router.post('/register', catchAsync(async (req, res) => {
   try {
     const { email, username, password } = req.body;
     const user = new User({ email, username });
     const registeredUser = await User.register(user, password);
-    req.flash('success', 'Welcome!')
-    console.log(registeredUser);
-    res.redirect('/beaches')
+    req.login(registeredUser, err => {
+      if (err) return next(err)
+      req.flash('success', 'Welcome!')
+      res.redirect('/beaches')
+    });
   } catch (e) {
     req.flash('error', e.message);
     res.redirect('/users/register')
   }
 }))
+
 router.get('/login', (req, res) => {
   res.render('login')
 })
