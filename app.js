@@ -64,7 +64,9 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())//store user in the session
 passport.deserializeUser(User.deserializeUser())//remove user from session
 
+//gives every file access to these variables
 app.use((req,res,next) =>{
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
