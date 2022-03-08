@@ -5,7 +5,7 @@ const catchAsync = require('../helpers/catchAsync');
 const ExpressError = require('../helpers/ExpressError');
 const { beachSchema, reviewSchema } = require('../schemas.js');
 const Review = require('../models/review');
-
+const {isLoggedIn} = require('../helpers/middleware');
 
 
 const validateBeach = (req, res, next) => {
@@ -35,11 +35,12 @@ router.get('/', catchAsync(async (req, res) => {
 }))
 
 //create
-router.get('/new', catchAsync(async (req, res) => {
-  res.render('beaches_create')
-}))
+router.get('/new', isLoggedIn, (req, res) => {
 
-router.post('/', validateBeach, catchAsync(async (req, res) => {
+  res.render('beaches_create')
+})
+
+router.post('/', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
   const beach = new Beach(req.body);
   await beach.save();
   req.flash('success', 'Success! You have listed a new beach.');
