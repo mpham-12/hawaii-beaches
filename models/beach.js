@@ -9,6 +9,10 @@ const BeachSchema = new Schema({
   longitude: Number,
   description: String,
   image: String,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
@@ -17,13 +21,13 @@ const BeachSchema = new Schema({
   ]
 })
 
-BeachSchema.post('findOneAndDelete', async function (doc) {
+BeachSchema.post('findOneAndDelete', async function(doc) {
   if (doc) {
-      await Review.deleteMany({
-          _id: {
-              $in: doc.reviews
-          }
-      })
+    await Review.deleteMany({
+      _id: {
+        $in: doc.reviews
+      }
+    })
   }
 })
 

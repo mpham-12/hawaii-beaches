@@ -5,7 +5,7 @@ const catchAsync = require('../helpers/catchAsync');
 const ExpressError = require('../helpers/ExpressError');
 const { beachSchema, reviewSchema } = require('../schemas.js');
 const Review = require('../models/review');
-const {isLoggedIn} = require('../helpers/middleware');
+const { isLoggedIn } = require('../helpers/middleware');
 
 
 const validateBeach = (req, res, next) => {
@@ -42,6 +42,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 router.post('/', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
   const beach = new Beach(req.body);
+  beach.owner = req.user._id;
   await beach.save();
   req.flash('success', 'Success! You have listed a new beach.');
   res.redirect(`/beaches/${beach._id}`)
@@ -50,7 +51,8 @@ router.post('/', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
 //show
 router.get('/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
-  const beach = await Beach.findById(id).populate('reviews');
+  const beach = await Beach.findById(id).populate('reviews').populate('owner');
+  console.log('beach', beach)
   if (!beach) {
     req.flash('error', "The beach you're looking for does not exist.");
     return res.redirect('/beaches')
@@ -66,11 +68,20 @@ router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     req.flash('error', "The beach you're looking for does not exist.");
     return res.redirect('/beaches')
   }
+  if (!beach.owner.equals(req.user._id)) {
+    req.flash('error', 'Permission denied.');
+    return res.redirect(`/beaches/${id}`);
+  }
   res.render('beaches_update', { beach });
 }))
 
 router.put('/:id', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
   const { id } = req.params;
+  const beach = await Beach.findById(id);
+  if (!beach.owner.equals(req.user._id)) {
+    req.flash('error', 'Permission denied.');
+    return res.redirect(`/beaches/${id}`)
+  }
   await Beach.findByIdAndUpdate(id, { ...req.body });
   req.flash('success', 'Success! You have modified the beach.');
   res.redirect(`/beaches/${id}`)

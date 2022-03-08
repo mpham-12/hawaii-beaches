@@ -15,9 +15,14 @@
       <p class="card-text"><small class="text-muted">
           <%= beach.location %>
         </small></p>
+      <p class="card-text"><small class="text-muted">
+          Posted by: <%= beach.owner.username %>
+        </small></p>
     </div>
     <a href="/beaches">Back</a>
-    <a href="/beaches/<%= beach._id%>/edit">Edit</a>
+    <% if (currentUser && beach.owner.equals(currentUser._id)) {%>
+      <a href="/beaches/<%= beach._id%>/edit">Edit</a>
+      <% } %>
   </div>
 
   <h2>Leave a Review</h2>
@@ -36,14 +41,16 @@
 
   <% for (let review of beach.reviews) { %>
     <div class="beach-reviews">
-      <p>Rating: <%= review.rating %> </p>
-      <p>Review: <%= review.body %> </p>
-      <form action="/beaches/<%=beach._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-        <button class="btn btn-danger">Delete</button>
-      </form>
+      <p>Rating: <%= review.rating %>
+      </p>
+      <p>Review: <%= review.body %>
+      </p>
+      <% if (currentUser && beach.reviews.equals(currentUser._id)) {%>
+        <form action="/beaches/<%=beach._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+        <% } %>
     </div>
-      <% } %>  
+    <% } %>
 
-      <% console.log("test") %> 
-
-
+      <% console.log("test") %>
