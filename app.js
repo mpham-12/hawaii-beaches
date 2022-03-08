@@ -9,6 +9,9 @@ const ExpressError = require('./helpers/ExpressError');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport=require('passport');
+const LocalStrategy=require('passport-local');
+const User=require('./models/user');
 
 
 
@@ -54,6 +57,13 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser())//store user in the session
+passport.deserializeUser(User.deserializeUser())//remove user from session
+
 app.use((req,res,next) =>{
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
@@ -65,11 +75,13 @@ app.use((req,res,next) =>{
 //import routers
 const homepageRouter = require('./routes/homepage.js');
 const beachesRouter = require('./routes/beaches.js');
+const usersRouter = require('./routes/users.js');
 
 
 //pass routers to express as middleware
 app.use('/', homepageRouter);
 app.use('/beaches', beachesRouter);
+app.use('/users', usersRouter);
 
 
 //error handling for all other pages
