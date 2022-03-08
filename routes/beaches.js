@@ -2,30 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Beach = require('../models/beach');
 const catchAsync = require('../helpers/catchAsync');
-const ExpressError = require('../helpers/ExpressError');
-const { beachSchema, reviewSchema } = require('../schemas.js');
 const Review = require('../models/review');
-const { isLoggedIn } = require('../helpers/middleware');
-
-
-const validateBeach = (req, res, next) => {
-  const { error } = beachSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(e => e.message).join(',')
-    throw new ExpressError(msg, 400)
-  } else {
-    next();
-  }
-}
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(e => e.message).join(',')
-    throw new ExpressError(msg, 400)
-  } else {
-    next();
-  }
-}
+const { isLoggedIn, isOwner, validateReview, validateBeach } = require('../helpers/middleware');
 
 
 //index
@@ -61,34 +39,25 @@ router.get('/:id', catchAsync(async (req, res) => {
 }))
 
 //update
-router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, isOwner, catchAsync(async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id);
   if (!beach) {
     req.flash('error', "The beach you're looking for does not exist.");
     return res.redirect('/beaches')
   }
-  if (!beach.owner.equals(req.user._id)) {
-    req.flash('error', 'Permission denied.');
-    return res.redirect(`/beaches/${id}`);
-  }
   res.render('beaches_update', { beach });
 }))
 
-router.put('/:id', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, isOwner, validateBeach, catchAsync(async (req, res) => {
   const { id } = req.params;
-  const beach = await Beach.findById(id);
-  if (!beach.owner.equals(req.user._id)) {
-    req.flash('error', 'Permission denied.');
-    return res.redirect(`/beaches/${id}`)
-  }
   await Beach.findByIdAndUpdate(id, { ...req.body });
   req.flash('success', 'Success! You have modified the beach.');
   res.redirect(`/beaches/${id}`)
 }))
 
 //delete
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isOwner, catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndDelete(id);
   req.flash('success', 'Your listed beach has been deleted.');
