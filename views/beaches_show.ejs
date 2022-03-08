@@ -24,7 +24,7 @@
       <a href="/beaches/<%= beach._id%>/edit">Edit</a>
       <% } %>
   </div>
-
+<% if (currentUser){ %> 
   <h2>Leave a Review</h2>
   <form class="mb-3 needs-validation" action="/beaches/<%=beach._id%>/reviews" method="POST" novalidate>
     <div class="mb-3">
@@ -38,18 +38,22 @@
     </div>
     <button class="btn btn-success">Submit</button>
   </form>
-
-  <% for (let review of beach.reviews) { %>
+<% } %> 
+  <% for (let review of beach.reviews.reverse()) { %>
     <div class="beach-reviews">
       <p>Rating: <%= review.rating %>
       </p>
       <p>Review: <%= review.body %>
       </p>
-      <% if (currentUser && beach.reviews.equals(currentUser._id)) {%>
+      <p>- <%= review.author.username %>
+      </p>
+      <% if (currentUser && review.author.equals(currentUser._id)) {%>
+
         <form action="/beaches/<%=beach._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
           <button class="btn btn-danger">Delete</button>
         </form>
         <% } %>
+
     </div>
     <% } %>
 

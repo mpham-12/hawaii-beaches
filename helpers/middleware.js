@@ -1,6 +1,7 @@
 const { beachSchema, reviewSchema } = require('../schemas.js');
 const ExpressError = require('./ExpressError');
 const Beach = require('../models/beach');
+const Review = require('../models/review');
 
 
 const validateBeach = (req, res, next) => {
@@ -41,6 +42,16 @@ const isOwner = async(req, res, next) => {
   next();
 }
 
+const isAuthor = async(req, res, next) => {
+  const { id, reviewId } = req.params;
+  const review = await Review.findById(reviewId);
+  if (!review.author.equals(req.user._id)) {
+    req.flash('error', 'Permission denied.');
+    return res.redirect(`/beaches/${id}`)
+  }
+  next();
+}
 
 
-module.exports = { isLoggedIn, isOwner, validateBeach, validateReview }
+
+module.exports = { isLoggedIn, isOwner, validateBeach, validateReview, isAuthor }

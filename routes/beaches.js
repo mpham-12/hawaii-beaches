@@ -3,7 +3,7 @@ const router = express.Router();
 const Beach = require('../models/beach');
 const catchAsync = require('../helpers/catchAsync');
 const Review = require('../models/review');
-const { isLoggedIn, isOwner, validateReview, validateBeach } = require('../helpers/middleware');
+const { isAuthor, isLoggedIn, isOwner, validateReview, validateBeach } = require('../helpers/middleware');
 
 
 //index
@@ -29,7 +29,12 @@ router.post('/', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
 //show
 router.get('/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
-  const beach = await Beach.findById(id).populate('reviews').populate('owner');
+  const beach = await Beach.findById(id).populate({
+    path:'reviews',
+    populate: {
+      path:'author'
+    }
+  }).populate('owner');
   console.log('beach', beach)
   if (!beach) {
     req.flash('error', "The beach you're looking for does not exist.");
@@ -69,6 +74,7 @@ router.post('/:id/reviews', isLoggedIn, validateReview, catchAsync(async (req, r
   const { id } = req.params;
   const beach = await Beach.findById(id);
   const review = new Review(req.body);
+  review.author = req.user._id;
   beach.reviews.push(review);
   await review.save();
   await beach.save();
@@ -77,7 +83,7 @@ router.post('/:id/reviews', isLoggedIn, validateReview, catchAsync(async (req, r
 }))
 
 //delete review
-router.delete('/:id/reviews/:reviewId', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id/reviews/:reviewId', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
   const { id, reviewId } = req.params;
   await Beach.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
