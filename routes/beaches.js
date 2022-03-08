@@ -59,7 +59,7 @@ router.get('/:id', catchAsync(async (req, res) => {
 }))
 
 //update
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id);
   if (!beach) {
@@ -69,7 +69,7 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
   res.render('beaches_update', { beach });
 }))
 
-router.put('/:id', validateBeach, catchAsync(async (req, res) => {
+router.put('/:id', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndUpdate(id, { ...req.body });
   req.flash('success', 'Success! You have modified the beach.');
@@ -77,7 +77,7 @@ router.put('/:id', validateBeach, catchAsync(async (req, res) => {
 }))
 
 //delete
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
   const { id } = req.params;
   await Beach.findByIdAndDelete(id);
   req.flash('success', 'Your listed beach has been deleted.');
@@ -85,7 +85,7 @@ router.delete('/:id', catchAsync(async (req, res) => {
 }))
 
 //post review
-router.post('/:id/reviews', validateReview, catchAsync(async (req, res) => {
+router.post('/:id/reviews', isLoggedIn, validateReview, catchAsync(async (req, res) => {
   const { id } = req.params;
   const beach = await Beach.findById(id);
   const review = new Review(req.body);
@@ -97,7 +97,7 @@ router.post('/:id/reviews', validateReview, catchAsync(async (req, res) => {
 }))
 
 //delete review
-router.delete('/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+router.delete('/:id/reviews/:reviewId', isLoggedIn, catchAsync(async (req, res) => {
   const { id, reviewId } = req.params;
   await Beach.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
