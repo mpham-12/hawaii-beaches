@@ -1,17 +1,18 @@
 <% layout('/layouts/boilerplate') %>
 
   <h1>BEACHES CREATE FORM</h1>
-  <form class="needs-validation" action="/beaches" method="POST" novalidate>
+  <form class="needs-validation" action="/beaches" method="POST" novalidate enctype="multipart/form-data">
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="floatingInput" name="title" required>
       <label for="floatingInput">Beach Name</label>
       <div class="valid-feedback">Looks good!</div>
     </div>
-    <div class="form-floating mb-3">
+    <input type="file" name="image" id="">
+    <!-- <div class="form-floating mb-3">
       <input type="text" class="form-control" id="floatingInput" name="image" required>
       <label for="floatingInput">Image URL</label>
       <div class="valid-feedback">Looks good!</div>
-    </div>
+    </div> -->
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="floatingInput" name="location" required>
       <label for="floatingInput">City, State</label>
