@@ -23,7 +23,7 @@ router.get('/:id', catchAsync(beaches.showBeach))
 //update
 router.get('/:id/edit', isLoggedIn, isOwner, catchAsync(beaches.updateForm))
 
-router.put('/:id', isLoggedIn, isOwner, validateBeach, catchAsync(beaches.updateBeach))
+router.put('/:id', isLoggedIn, isOwner, upload.single('image'), validateBeach, catchAsync(beaches.updateBeach))
 
 //delete
 router.delete('/:id', isLoggedIn, isOwner, catchAsync(beaches.deleteBeach))

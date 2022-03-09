@@ -1,16 +1,24 @@
 <% layout('/layouts/boilerplate') %>
 
   <h1>BEACHES UPDATE FORM</h1>
-  <form class="needs-validation" action="/beaches/<%= beach._id%>?_method=PUT" method="POST" novalidate>
+  <form class="needs-validation" action="/beaches/<%= beach._id%>?_method=PUT" method="POST" novalidate
+    enctype="multipart/form-data">
     <div class="form-floating mb-3">
       <input type="text" class="form-control" id="floatingInput" name="title" value="<%= beach.title%>" required>
       <label for="floatingInput">Beach Name</label>
       <div class="valid-feedback">Looks good!</div>
     </div>
+    <label for="floatingInput">Choose a New Thumbnail</label>
+
+
+
     <div class="form-floating mb-3">
+      <input type="file" name="image" id="" value="">
+    </div>
+    <!-- <div class="form-floating mb-3">
       <input type="text" class="form-control" id="floatingInput" name="image" value="<%= beach.image%>" required>
       <label for="floatingInput">Image URL</label>
-      <div class="valid-feedback">Looks good!</div>
+      <div class="valid-feedback">Looks good!</div> -->
 
     </div>
     <div class="form-floating mb-3">
@@ -47,3 +55,6 @@
     <button>Delete</button>
   </form>
   <a href="/beaches/<%= beach._id%>">Back</a>
+
+  
+

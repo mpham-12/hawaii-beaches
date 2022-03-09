@@ -49,7 +49,9 @@ const updateForm = async (req, res) => {
 
 const updateBeach = async (req, res) => {
   const { id } = req.params;
-  await Beach.findByIdAndUpdate(id, { ...req.body });
+  const beach = await Beach.findByIdAndUpdate(id, { ...req.body });
+  beach.image = { url: req.file.path, filename: req.file.filename };
+  await beach.save();
   req.flash('success', 'Success! You have modified the beach.');
   res.redirect(`/beaches/${id}`)
 }
