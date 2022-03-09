@@ -1,95 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const Beach = require('../models/beach');
 const catchAsync = require('../helpers/catchAsync');
-const Review = require('../models/review');
 const { isAuthor, isLoggedIn, isOwner, validateReview, validateBeach } = require('../helpers/middleware');
-
+const beaches = require('../controllers/beaches')
 
 //index
-router.get('/', catchAsync(async (req, res) => {
-  const beaches = await Beach.find({});
-  res.render('beaches', { beaches })
-}))
+router.get('/', catchAsync(beaches.index))
 
 //create
-router.get('/new', isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, beaches.newForm)
 
-  res.render('beaches_create')
-})
-
-router.post('/', validateBeach, isLoggedIn, catchAsync(async (req, res) => {
-  const beach = new Beach(req.body);
-  beach.owner = req.user._id;
-  await beach.save();
-  req.flash('success', 'Success! You have listed a new beach.');
-  res.redirect(`/beaches/${beach._id}`)
-}))
+//post
+router.post('/', isLoggedIn, validateBeach, catchAsync(beaches.postBeach))
 
 //show
-router.get('/:id', catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const beach = await Beach.findById(id).populate({
-    path:'reviews',
-    populate: {
-      path:'author'
-    }
-  }).populate('owner');
-  console.log('beach', beach)
-  if (!beach) {
-    req.flash('error', "The beach you're looking for does not exist.");
-    return res.redirect('/beaches')
-  }
-  res.render('beaches_show', { beach, msg: req.flash('success') })
-}))
+router.get('/:id', catchAsync(beaches.showBeach))
 
 //update
-router.get('/:id/edit', isLoggedIn, isOwner, catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const beach = await Beach.findById(id);
-  if (!beach) {
-    req.flash('error', "The beach you're looking for does not exist.");
-    return res.redirect('/beaches')
-  }
-  res.render('beaches_update', { beach });
-}))
+router.get('/:id/edit', isLoggedIn, isOwner, catchAsync(beaches.updateForm))
 
-router.put('/:id', isLoggedIn, isOwner, validateBeach, catchAsync(async (req, res) => {
-  const { id } = req.params;
-  await Beach.findByIdAndUpdate(id, { ...req.body });
-  req.flash('success', 'Success! You have modified the beach.');
-  res.redirect(`/beaches/${id}`)
-}))
+router.put('/:id', isLoggedIn, isOwner, validateBeach, catchAsync(beaches.updateBeach))
 
 //delete
-router.delete('/:id', isLoggedIn, isOwner, catchAsync(async (req, res) => {
-  const { id } = req.params;
-  await Beach.findByIdAndDelete(id);
-  req.flash('success', 'Your listed beach has been deleted.');
-  res.redirect(`/beaches/`);
-}))
+router.delete('/:id', isLoggedIn, isOwner, catchAsync(beaches.deleteBeach))
 
 //post review
-router.post('/:id/reviews', isLoggedIn, validateReview, catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const beach = await Beach.findById(id);
-  const review = new Review(req.body);
-  review.author = req.user._id;
-  beach.reviews.push(review);
-  await review.save();
-  await beach.save();
-  req.flash('success', 'Success! Your review has been posted.');
-  res.redirect(`/beaches/${id}`);
-}))
+router.post('/:id/reviews', isLoggedIn, validateReview, catchAsync(beaches.postReview))
 
 //delete review
-router.delete('/:id/reviews/:reviewId', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-  const { id, reviewId } = req.params;
-  await Beach.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-  await Review.findByIdAndDelete(reviewId);
-  req.flash('success', 'Your review has been deleted.');
-  res.redirect(`/beaches/${id}`);
-}))
+router.delete('/:id/reviews/:reviewId', isLoggedIn, isAuthor, catchAsync(beaches.deleteReview))
 
 
 module.exports = router;
