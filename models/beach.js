@@ -8,7 +8,10 @@ const BeachSchema = new Schema({
   latitude: Number,
   longitude: Number,
   description: String,
-  image: String,
+  image: {
+    url: String,
+    filename: String
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'

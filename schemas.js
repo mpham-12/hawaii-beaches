@@ -6,7 +6,7 @@ const beachSchema = Joi.object({
   latitude: Joi.number().required(),
   longitude: Joi.number().required(),
   description: Joi.string().required(),
-  image: Joi.string().required(),
+  // image: Joi.string().required(),
 });
 
 const reviewSchema = Joi.object({

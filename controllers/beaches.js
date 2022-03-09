@@ -14,8 +14,10 @@ const newForm = (req, res) => {
 
 const postBeach = async (req, res, next) => {
   const beach = new Beach(req.body);
+  beach.image = { url: req.file.path, filename: req.file.filename };
   beach.owner = req.user._id;
   await beach.save();
+  console.log(beach, 'beach')
   req.flash('success', 'Success! You have listed a new beach.');
   res.redirect(`/beaches/${beach._id}`)
 }

@@ -14,12 +14,8 @@ router.get('/', catchAsync(beaches.index))
 router.get('/new', isLoggedIn, beaches.newForm)
 
 //post
-// router.post('/', isLoggedIn, validateBeach, catchAsync(beaches.postBeach))
-router.post('/', upload.single('image'), (req, res) => {
-  console.log('req.body----', req.body, 'req.file-----', req.file);
-  res.send('it worked')
+router.post('/', isLoggedIn, upload.single('image'), validateBeach, catchAsync(beaches.postBeach))
 
-})
 
 //show
 router.get('/:id', catchAsync(beaches.showBeach))
