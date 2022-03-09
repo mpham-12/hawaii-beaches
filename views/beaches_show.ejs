@@ -1,5 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 
+  <link rel="stylesheet" href="/styles/star-ratings.css">
+
   <h1>
     <%= beach.title %> DETAILS PAGE
   </h1>
@@ -24,37 +26,54 @@
       <a href="/beaches/<%= beach._id%>/edit">Edit</a>
       <% } %>
   </div>
-<% if (currentUser){ %> 
-  <h2>Leave a Review</h2>
-  <form class="mb-3 needs-validation" action="/beaches/<%=beach._id%>/reviews" method="POST" novalidate>
-    <div class="mb-3">
-      <label class="form-label" for="rating">Rating</label>
-      <input class="form-range" type="range" min="1" max="5" name="rating" id="rating">
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="body">Review:</label>
-      <textarea class="form-control" name="body" id="body" cols="30" rows="5" required></textarea>
-      <div class="valid-feedback">Looks good!</div>
-    </div>
-    <button class="btn btn-success">Submit</button>
-  </form>
-<% } %> 
-  <% for (let review of beach.reviews.reverse()) { %>
-    <div class="beach-reviews">
-      <p>Rating: <%= review.rating %>
-      </p>
-      <p>Review: <%= review.body %>
-      </p>
-      <p>- <%= review.author.username %>
-      </p>
-      <% if (currentUser && review.author.equals(currentUser._id)) {%>
+  <% if (currentUser){ %>
+    <h2>Leave a Review</h2>
+    <form class="mb-3 needs-validation" action="/beaches/<%=beach._id%>/reviews" method="POST" novalidate>
 
-        <form action="/beaches/<%=beach._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-          <button class="btn btn-danger">Delete</button>
-        </form>
-        <% } %>
+      <fieldset class="starability-grow">
+        <legend>First rating:</legend>
+        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="3" checked
+          aria-label="No rating." />
+        <input type="radio" id="first-rate1" name="rating" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="rating" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="rating" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="rating" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="rating" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
 
-    </div>
+      <div class="mb-3">
+        <label class="form-label" for="body">Review:</label>
+        <textarea class="form-control" name="body" id="body" cols="30" rows="5" required></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <button class="btn btn-success">Submit</button>
+    </form>
     <% } %>
+      <% for (let review of beach.reviews.reverse()) { %>
+        <div class="beach-reviews">
 
-      <% console.log("test") %>
+
+          <h2>
+            <%= review.author.username %>
+          </h2>
+          <p class="starability-result" data-rating="<%=review.rating%>">
+            Rated: <%= review.rating %> stars
+          </p>
+
+          <p>"<%= review.body %>"
+          </p>
+
+          <% if (currentUser && review.author.equals(currentUser._id)) {%>
+
+            <form action="/beaches/<%=beach._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+              <button class="btn btn-danger">Delete</button>
+            </form>
+            <% } %>
+
+        </div>
+        <% } %>

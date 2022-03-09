@@ -11,7 +11,6 @@ router.post('/register', catchAsync(users.registerUser))
 
 router.get('/login', users.loginForm)
 
-
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/users/login' }), users.loginUser)
 
 router.get('/logout', users.logoutUser)
