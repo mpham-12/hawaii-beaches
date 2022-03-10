@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Review = require('./review')
+const Review = require('./review');
+
 
 const BeachSchema = new Schema({
   title: String,
   location: String,
-  latitude: Number,
-  longitude: Number,
   description: String,
+  geometry: {
+    type: {
+      type: String,
+      enum: ['Point'],
+    },
+    coordinates: {
+      type: [Number],
+    }
+  },
   image: {
     url: String,
     filename: String
@@ -21,7 +29,7 @@ const BeachSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Review'
     }
-  ]
+  ],
 })
 
 BeachSchema.post('findOneAndDelete', async function(doc) {

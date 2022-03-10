@@ -1,6 +1,8 @@
 const Beach = require('../models/beach');
 const Review = require('../models/review');
-
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapboxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({accessToken: mapboxToken});
 
 const index = async (req, res) => {
   const beaches = await Beach.find({});
@@ -13,7 +15,12 @@ const newForm = (req, res) => {
 }
 
 const postBeach = async (req, res, next) => {
+    const geoData = await geocoder.forwardGeocode({
+    query: `${req.body.title}, ${req.body.location}`,
+    limit: 5
+  }).send()
   const beach = new Beach(req.body);
+  beach.geometry = geoData.body.features[0].geometry;
   beach.image = { url: req.file.path, filename: req.file.filename };
   beach.owner = req.user._id;
   await beach.save();
