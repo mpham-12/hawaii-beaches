@@ -25,7 +25,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.045456, 21.667009]
   },
   },
   {
@@ -39,7 +39,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.0508, 21.6650]
   },
   },
   {
@@ -53,7 +53,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.0671, 21.6415]
   },
   },
   {
@@ -67,7 +67,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.1034, 21.5928]
   },
   },
   {
@@ -81,7 +81,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.0839, 21.6269]
   },
   },
   {
@@ -95,7 +95,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.9988, 21.7052]
   },
   },
   {
@@ -109,7 +109,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.7151, 21.3925]
   },
   },
   {
@@ -123,7 +123,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.0593, 21.6543]
   },
   },
   {
@@ -137,7 +137,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.6871, 21.3308]
   },
   },
   {
@@ -151,7 +151,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.7389, 21.4054]
   },
   },
   {
@@ -165,7 +165,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.6601, 21.3111]
   },
   },
   {
@@ -179,7 +179,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.8744, 21.5562]
   },
   },
   {
@@ -193,7 +193,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.9394, 21.6706]
   },
   },
   {
@@ -207,7 +207,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.6938, 21.2690]
   },
   },
   {
@@ -221,7 +221,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.8292, 21.2793]
   },
   },
   {
@@ -235,7 +235,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.8469, 21.2830]
   },
   },
   {
@@ -249,7 +249,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.6775, 21.2817]
   },
   },
   {
@@ -263,7 +263,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.6727, 21.2857]
   },
   },
   {
@@ -277,7 +277,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.8071, 21.2549]
   },
   },
   {
@@ -291,7 +291,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.0090, 21.3131]
   },
   },
   {
@@ -305,7 +305,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.1466, 21.3819]
     },
   },
   {
@@ -319,7 +319,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.2204, 21.4764]
     },
   },
   {
@@ -333,7 +333,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.2420, 21.5488]
     },
   },
   {
@@ -347,7 +347,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-158.1883, 21.4393]
     },
   },
   {
@@ -361,7 +361,7 @@ const seedBeaches = [
     },
     geometry: {
       type: "Point",
-      coordinates: [-113.1331, 47.0202]
+      coordinates: [-157.7090, 21.3575]
     },
   }
 ];
