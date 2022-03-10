@@ -37,6 +37,7 @@ const showBeach = async (req, res) => {
       path: 'author'
     }
   }).populate('owner');
+  console.log(beach)
   if (!beach) {
     req.flash('error', "The beach you're looking for does not exist.");
     return res.redirect('/beaches')

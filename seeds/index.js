@@ -22,7 +22,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.best-of-oahu.com/images/Sunset-Beach-Oahu-2.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -32,7 +36,11 @@ const seedBeaches = [
     image: {
       url: 'https://mapio.net/images-p/44484605.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -42,7 +50,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.best-of-oahu.com/images/Waimea-Rock-Drone.jpeg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -52,7 +64,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.hawaiianbeachrentals.com/images/products/beach/p31/p31_zoom_5241a8ce884c93.73686016.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -62,7 +78,11 @@ const seedBeaches = [
     image: {
       url: 'https://i.pinimg.com/736x/e0/0d/57/e00d57307ebf0cabc7b957552261f6d7--hawaii-vacation-vacation-rentals.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -72,7 +92,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.hawaiianbeachrentals.com/images/products/beach/p38/p38_zoom_52445626e2aaf1.97688871.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -82,7 +106,11 @@ const seedBeaches = [
     image: {
       url: 'https://oahuactivities.com/wp-content/uploads/2019/08/beautiful-beach-view.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -92,7 +120,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.hawaiianbeachrentals.com/images/products/beach/p33/p33_zoom_524443d0bdaeb0.17508389.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -102,7 +134,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.tripsavvy.com/thmb/X16YFMqxFx0yPY_tO3yEDCwhkBY=/4697x2642/smart/filters:no_upscale()/waimanalo-beach-hawaii-1198229474-b50eda3e6643447bb1903f049a300ccd.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -112,7 +148,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.fodors.com/assets/destinations/710086/kailua-beach-park-honolulu-and-oahu-oahu-hawaii-usa_main.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -122,7 +162,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.best-of-oahu.com/images/xMakapuu-Beach-Park.jpg.pagespeed.ic.yAa5py4HRR.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -132,7 +176,11 @@ const seedBeaches = [
     image: {
       url: 'https://i.pinimg.com/originals/a6/12/c4/a612c4288711aa1a5439d4b96eb12d72.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -142,7 +190,11 @@ const seedBeaches = [
     image: {
       url: 'https://campervanhawaii.com/uploads/malaekahana-5-1.jpeg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -152,7 +204,11 @@ const seedBeaches = [
     image: {
       url: 'https://fh-sites.imgix.net/sites/1481/2017/03/19171111/hb1.jpg?auto=compress%2Cformat&w=700&h=700&fit=max',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -162,7 +218,11 @@ const seedBeaches = [
     image: {
       url: 'https://nypost.com/wp-content/uploads/sites/2/2019/04/waikiki-beach.jpg?quality=80&strip=all',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -172,7 +232,11 @@ const seedBeaches = [
     image: {
       url: 'https://i.pinimg.com/originals/e7/9e/97/e79e978998d2d8fde487513e8a2fd50a.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -182,7 +246,11 @@ const seedBeaches = [
     image: {
       url: 'https://731634-2445618-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/Hawaii-Oahu-Windward-Coast-Halona-Beach-Cove-Swimming.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -192,7 +260,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.best-of-oahu.com/images/Sandy-Beach-Drone.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -202,7 +274,11 @@ const seedBeaches = [
     image: {
       url: 'https://loveoahu.org/wp-content/uploads/diamond-head-1.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -212,7 +288,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.speedishuttle.com/images/site/visit-ewabeach.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+  },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -222,7 +302,11 @@ const seedBeaches = [
     image: {
       url: 'https://loveoahu.org/wp-content/uploads/laniakea-turtle-beach-PBphotos.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+    },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -232,7 +316,11 @@ const seedBeaches = [
     image: {
       url: 'https://media.istockphoto.com/photos/aerial-view-of-makaha-beach-on-oahu-hawaii-picture-id614621566?k=20&m=614621566&s=612x612&w=0&h=QvkxUw4AzZ3G-zVF2MJeU8dpzo8t1GI7w-D-7muQGCs=',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+    },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -242,7 +330,11 @@ const seedBeaches = [
     image: {
       url: 'https://www.gohawaii.com/sites/default/files/styles/image_gallery_bg_xl/public/hero-unit-images/Oahu_WestSideYokohamaKeawaula.jpg?itok=c4xjgjyO',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+    },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -252,7 +344,11 @@ const seedBeaches = [
     image: {
       url: 'https://alohalovely.com/wp-content/uploads/2016/11/pokai-IG-shot-beach-1024x575.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+    },
   },
   {
     owner: '6227c3244b715ad7502b1034',
@@ -262,7 +358,11 @@ const seedBeaches = [
     image: {
       url: 'https://static.toiimg.com/thumb/msid-44850862,width=1200,height=900/44850862.jpg',
       filename: 'HawaiiBeaches/default'
-    }
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [-113.1331, 47.0202]
+    },
   }
 ];
 
