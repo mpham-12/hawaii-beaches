@@ -21,7 +21,6 @@
             <a href="/beaches/<%=beach._id%>">
               <h5 class="card-title">
                 <%= beach.title %>
-              </h5>
             </a>
             <p class="card-text">
               <%= beach.description %>
@@ -39,6 +38,7 @@
 
       <script>
         const mapboxToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const beaches = {features: <%- JSON.stringify(beaches)%>}
       </script>
-      
+
       <script src="/js/clusterMap.js"></script>
