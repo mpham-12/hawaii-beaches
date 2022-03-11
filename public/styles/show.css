@@ -1,0 +1,89 @@
+.show-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.show-map{
+  width: 45%; 
+  margin-left: 15px;
+  height: 710px;
+}
+
+.show-title{
+  color: rgb(197, 150, 96);
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+.show-card-text{
+  color: rgb(168, 104, 31);
+}
+
+.show-card-desc{
+  color: rgb(117, 117, 117);
+
+}
+
+.show-card-title {
+	color: rgb(197, 150, 96);
+	margin-bottom: 20px;
+}
+
+.review-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+margin-top: 20px;
+border: 1px solid transparent;
+  padding: 30px 40px;
+
+  background-color: rgb(245, 229, 212);
+}
+
+.show-stars{
+  display: flex;
+  justify-content: center;
+}
+
+.beach-reviews{
+  margin-top: 20px;
+  width: 99%;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 30px 40px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.beach-reviews-con{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 80%;
+  min-height: 700px;
+  border: 1px solid transparent;
+  padding: 30px 40px;
+  border-radius: 20px;
+  background-color: rgb(224, 177, 123);
+}
+
+.review-name{
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.name-rating{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.body-delete{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+}

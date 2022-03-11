@@ -1,37 +1,52 @@
-<% layout('/layouts/boilerplate') %>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= beach.title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" href="/styles/star-ratings.css">
+  <link rel="stylesheet" href="/styles/show.css">
+</head>
+<%- include('../views/partials/navbar.ejs') %>
 
-  <h1>
-    <%= beach.title %> DETAILS PAGE
+<body>
+  <h1 class="show-title">
+    <%= beach.title %> 
   </h1>
+  <section class="show-top">
   <div class="card mb-3" style="width: 50%;">
     <img src=<%=beach.image.url %> class="card-img-top" alt="">
     <div class="card-body">
-      <h5 class="card-title">
-        <%= beach.title %>
-      </h5>
-      <p class="card-text">
+
+      <p class="show-card-desc">
         <%= beach.description %>
       </p>
-      <p class="card-text"><small class="text-muted">
+      <p class="show-card-text">
           <%= beach.location %>
-        </small></p>
-      <p class="card-text"><small class="text-muted">
+        </p>
+      <p class="show-card-text">
           Posted by: <%= beach.owner.username %>
-        </small></p>
+        </p>
     </div>
-    <a href="/beaches">Back</a>
+   
     <% if (currentUser && beach.owner.equals(currentUser._id)) {%>
       <a href="/beaches/<%= beach._id%>/edit">Edit</a>
       <% } %>
   </div>
+  <div class="show-map" id='map' ></div>
+</section>
+
+<section class="review-card">
   <% if (currentUser){ %>
     <h2>Leave a Review</h2>
     <form class="mb-3 needs-validation" action="/beaches/<%=beach._id%>/reviews" method="POST" novalidate>
-
+        <div class="show-stars">
       <fieldset class="starability-grow">
-        <legend>First rating:</legend>
         <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="3" checked
           aria-label="No rating." />
         <input type="radio" id="first-rate1" name="rating" value="1" />
@@ -45,26 +60,33 @@
         <input type="radio" id="first-rate5" name="rating" value="5" />
         <label for="first-rate5" title="Amazing">5 stars</label>
       </fieldset>
+      </div>  
 
       <div class="mb-3">
-        <label class="form-label" for="body">Review:</label>
-        <textarea class="form-control" name="body" id="body" cols="30" rows="5" required></textarea>
+        <textarea class="form-control" name="body" id="body" cols="80" rows="5" required></textarea>
         <div class="valid-feedback">Looks good!</div>
       </div>
       <button class="btn btn-success">Submit</button>
     </form>
     <% } %>
+
+    <h2>
+      Reviews:
+    </h2>
+    <container class="beach-reviews-con">
       <% for (let review of beach.reviews.reverse()) { %>
         <div class="beach-reviews">
 
 
-          <h2>
+       <div class="name-rating">
+          <h2 class="review-name">
             <%= review.author.username %>
           </h2>
           <p class="starability-result" data-rating="<%=review.rating%>">
             Rated: <%= review.rating %> stars
           </p>
-
+        </div>
+        <div class="body-delete">
           <p>"<%= review.body %>"
           </p>
 
@@ -74,12 +96,13 @@
               <button class="btn btn-danger">Delete</button>
             </form>
             <% } %>
-
+        </div>
         </div>
         <% } %>
+      </section>
+    </container>
 
-
-          <div id='map' style='width: 400px; height: 300px;'></div>
+          
           <script>
             const mapboxToken = '<%-process.env.MAPBOX_TOKEN%>';
             const beach = <%- JSON.stringify(beach)%>
@@ -87,3 +110,8 @@
           </script>
 
           <script src="/js/showMap.js"></script>
+</body>
+<%- include('../views/partials/footer') %>
+
+</html>
+
