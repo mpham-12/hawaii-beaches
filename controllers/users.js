@@ -26,7 +26,7 @@ const loginForm = (req, res) => {
 
 const loginUser = async (req, res) => {
   req.flash('success', 'Welcome back!');
-  const redirectTo = req.session.returnTo || '/';
+  const redirectTo = req.session.returnTo || '/beaches';
   delete req.session.returnTo;
   res.redirect(redirectTo);
 }
