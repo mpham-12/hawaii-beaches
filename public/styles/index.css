@@ -1,0 +1,71 @@
+.main-con {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+nav {
+	width: 100%;
+}
+
+footer {
+	width: 100%;
+	text-align: center;
+}
+
+#card {
+	border-radius: 25px;
+  width: 90%;
+}
+
+#card-img {
+	border-radius: 3px;
+	margin: 25px;
+	width: 100%;
+}
+
+#card-details {
+	margin-left: 50px;
+	margin-top: 10px;
+}
+
+#beach-title {
+	color: rgb(197, 150, 96);
+	margin-bottom: 20px;
+}
+
+#beach-card {
+	text-decoration: none;
+  border-radius: 25px;
+}
+
+#beach-card:hover {
+  box-shadow: 5px 5px 7px 1px #b6b6b6;
+}
+
+.card-text {
+	color: rgb(117, 117, 117);
+}
+
+.card-location {
+	margin-top: 20px;
+	color: rgb(168, 104, 31);
+}
+
+#map{
+  margin-bottom: 30px;
+  margin-top: 30px;
+  display: flex;
+  justify-self: center;
+  width: 95%; 
+  height: 500px;
+  border-radius: 25px;
+}
+.map-con{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: rgb(112,187,209);
+  background: linear-gradient(180deg, rgba(112,187,209,1) 0%, rgba(255,255,255,0.9598214285714286) 100%);
+
+}
