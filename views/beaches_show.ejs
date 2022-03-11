@@ -19,8 +19,10 @@
     <%= beach.title %> 
   </h1>
   <section class="show-top">
-  <div class="card mb-3" style="width: 50%;">
-    <img src=<%=beach.image.url %> class="card-img-top" alt="">
+  <div id="beach-card-mobile" class="card mb-3">
+    <div class="show-beach-img-con">
+    <img id="show-beach-img" src=<%=beach.image.url %> class="card-img-top" alt="">
+  </div>
     <div class="card-body">
 
       <p class="show-card-desc">
@@ -35,7 +37,9 @@
     </div>
    
     <% if (currentUser && beach.owner.equals(currentUser._id)) {%>
-      <a href="/beaches/<%= beach._id%>/edit">Edit</a>
+      <div class="show-edit">
+      <a id="show-edit" class="btn btn-success" href="/beaches/<%= beach._id%>/edit">Edit</a>
+      </div>
       <% } %>
   </div>
   <div class="show-map" id='map' ></div>

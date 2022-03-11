@@ -68,3 +68,9 @@ form {
 	justify-content: center;
 	width: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+	.needs-validation{
+		width: 90%;
+	}
+}

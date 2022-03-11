@@ -42,4 +42,13 @@ footer{
   border-radius: 20px;
 }
 
+@media only screen and (max-width: 768px) {
+.home-text {
+  margin: 0px 15px;
+  font-size: 20px;
+}
 
+#home-btn{
+  font-size: smaller;
+}
+}
