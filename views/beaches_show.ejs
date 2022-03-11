@@ -42,7 +42,6 @@
 </section>
 
 <section class="review-card">
-  <% if (currentUser){ %>
     <h2>Leave a Review</h2>
     <form class="mb-3 needs-validation" action="/beaches/<%=beach._id%>/reviews" method="POST" novalidate>
         <div class="show-stars">
@@ -66,9 +65,12 @@
         <textarea class="form-control" name="body" id="body" cols="80" rows="5" required></textarea>
         <div class="valid-feedback">Looks good!</div>
       </div>
+      <% if (currentUser){ %>
       <button class="btn btn-success">Submit</button>
+      <% } else {%>
+        <button href="/users/login" class="btn btn-success">Submit</button>
+        <% } %> 
     </form>
-    <% } %>
 
     <h2>
       Reviews:

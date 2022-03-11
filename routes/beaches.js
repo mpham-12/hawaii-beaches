@@ -28,6 +28,7 @@ router.put('/:id', isLoggedIn, isOwner, upload.single('image'), validateBeach, c
 //delete
 router.delete('/:id', isLoggedIn, isOwner, catchAsync(beaches.deleteBeach))
 
+router.get('/:id/reviews', isLoggedIn, catchAsync(beaches.showReview))
 //post review
 router.post('/:id/reviews', isLoggedIn, validateReview, catchAsync(beaches.postReview))
 

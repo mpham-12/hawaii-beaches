@@ -91,5 +91,11 @@ const deleteReview = async (req, res) => {
   res.redirect(`/beaches/${id}`);
 }
 
+const showReview = async (req, res) => {
+  const { id } = req.params;
+  await Beach.findById(id);
+  res.redirect(`/beaches/${id}`);
+}
 
-module.exports = { index, newForm, postBeach, showBeach, updateForm, updateBeach, deleteBeach, postReview, deleteReview };
+
+module.exports = { index, newForm, postBeach, showBeach, updateForm, updateBeach, deleteBeach, postReview, deleteReview, showReview };
