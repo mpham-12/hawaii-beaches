@@ -62,7 +62,7 @@ const seedBeaches = [
     description: 'Haleiwa is one of the beaches with calmer waters on the north shore. Try here if the winter surf is too unsafe for swimming at other places along the northern coast. It’s also a great place to take a surf lesson.',
     location: 'Haleiwa, Hawaii',
     image: {
-      url: 'https://www.hawaiianbeachrentals.com/images/products/beach/p31/p31_zoom_5241a8ce884c93.73686016.jpg',
+      url: 'https://images.contentstack.io/v3/assets/blt00454ccee8f8fe6b/blt38fd98d6cc4cfa0c/61bc4636c52c5b292ce236f3/US_Haleiwa_US_Header.jpg',
       filename: 'HawaiiBeaches/default'
     },
     geometry: {
@@ -90,7 +90,7 @@ const seedBeaches = [
     description: 'These side by side bays are more protected from waves than other North Shore beaches, making them good for snorkeling and swimming year round, even when the surf is big at other places along the North Shore. Kewela Bay Beach Park offers plenty of shade and a thick forest ironwood trees to complement its crystal blue waters and fine white sand.',
     location: 'Kawela, Hawaii',
     image: {
-      url: 'https://www.hawaiianbeachrentals.com/images/products/beach/p38/p38_zoom_52445626e2aaf1.97688871.jpg',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Caneel_Bay_Turtle_Bay_Beach_3.jpg',
       filename: 'HawaiiBeaches/default'
     },
     geometry: {
@@ -118,7 +118,7 @@ const seedBeaches = [
     description: ' Pūpūkea Beach Park is home to “Shark’s Cove,” one of the best areas for snorkeling and diving during the summer. A large protected cove is idea for families and beginner swimmers. Outside the cove, lava tubes, reef walls, and wildlife attract snorkelers, free divers, and scuba divers.',
     location: 'Pupukea, Hawaii',
     image: {
-      url: 'https://www.hawaiianbeachrentals.com/images/products/beach/p33/p33_zoom_524443d0bdaeb0.17508389.jpg',
+      url: 'https://api.trekaroo.com/system/photos/119842/original/August_09_480.jpg?1493794230',
       filename: 'HawaiiBeaches/default'
     },
     geometry: {

@@ -1,6 +1,7 @@
-if (process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
+
 
 const express = require('express');
 const app = express();
@@ -13,16 +14,17 @@ const ExpressError = require('./helpers/ExpressError');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
-const passport=require('passport');
-const LocalStrategy=require('passport-local');
-const User=require('./models/user');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
+const MongoStore = require("connect-mongo")(session);
+// const dbUrl= process.env.DB_URL || 'mongodb://localhost:27017/hawaii-beaches';
+const dbUrl= 'mongodb://localhost:27017/hawaii-beaches';
 
 
 
-
-
-mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -49,8 +51,21 @@ app.use(methodOverride('_method')); //allows use of PUT/PATCH/DELETE
 app.use(morgan('dev'));
 app.use(cookieParser('secretcode'));
 
+const secret=process.env.SECRET || 'reallylongpassword';
+
+const store = new MongoStore({
+  url: dbUrl,
+  secret: secret,
+  touchAfter:24*60*60,
+})
+
+store.on("error", function(){
+  console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
-  secret: 'reallylongpassword',
+  store,
+  secret: secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -73,7 +88,7 @@ passport.serializeUser(User.serializeUser())//store user in the session
 passport.deserializeUser(User.deserializeUser())//remove user from session
 
 //gives every file access to these variables
-app.use((req,res,next) =>{
+app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
