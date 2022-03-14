@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Beach = require('../models/beach');
+require('dotenv').config();
 
-mongoose.connect('mongodb://localhost:27017/hawaii-beaches', {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
