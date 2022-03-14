@@ -71,7 +71,7 @@ footer {
 @media only screen and (max-width: 768px) {
 	#card-img {
 		width: 90%;
-		height: auto;
+		height: intrinsic;
 		margin-top: 30px;
 	}
 	.main-con {
